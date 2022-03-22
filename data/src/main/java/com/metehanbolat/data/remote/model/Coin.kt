@@ -1,4 +1,4 @@
-package com.metehanbolat.domain.model
+package com.metehanbolat.data.remote.model
 
 data class Coin(
     val id: String,

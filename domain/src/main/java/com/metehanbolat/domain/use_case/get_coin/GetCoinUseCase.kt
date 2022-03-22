@@ -1,8 +1,7 @@
 package com.metehanbolat.domain.use_case.get_coin
 
 import com.metehanbolat.domain.common.Resource
-import com.metehanbolat.domain.extensions.toCoinDetail
-import com.metehanbolat.domain.model.CoinDetail
+import com.metehanbolat.domain.model.CoinDetailDto
 import com.metehanbolat.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,10 +12,10 @@ import javax.inject.Inject
 class GetCoinUseCase @Inject constructor(
     private val repository: CoinRepository
 ) {
-    operator fun invoke(coinId: String): Flow<Resource<CoinDetail>> = flow {
+    operator fun invoke(coinId: String): Flow<Resource<CoinDetailDto>> = flow {
         try {
             emit(Resource.Loading())
-            val coin = repository.getCoinById(coinId).toCoinDetail()
+            val coin = repository.getCoinById(coinId)
             emit(Resource.Success(coin))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected error occurred!"))

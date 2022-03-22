@@ -1,6 +1,6 @@
 package com.metehanbolat.cleanarchitectureappcompose.presentation.coin_detail
 
-import com.metehanbolat.domain.model.CoinDetail
+import com.metehanbolat.data.remote.model.CoinDetail
 
 data class CoinDetailState(
     val isLoading: Boolean = false,

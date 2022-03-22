@@ -4,6 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.metehanbolat.data.remote.extensions.toCoin
 import com.metehanbolat.domain.common.Resource
 import com.metehanbolat.domain.use_case.get_coins.GetCoinsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,7 +28,7 @@ class CoinListViewModel @Inject constructor(
         getCoinsUseCase().onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _state.value = CoinListState(coins = result.data ?: emptyList())
+                    _state.value = CoinListState(coins = result.data?.map { it.toCoin() } ?: emptyList())
                 }
                 is Resource.Error -> {
                     _state.value = CoinListState(error = result.message ?: "An unexpected error occurred!")

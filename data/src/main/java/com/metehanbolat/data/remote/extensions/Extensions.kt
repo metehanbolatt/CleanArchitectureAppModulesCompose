@@ -1,9 +1,9 @@
-package com.metehanbolat.domain.extensions
+package com.metehanbolat.data.remote.extensions
 
+import com.metehanbolat.data.remote.model.Coin
+import com.metehanbolat.data.remote.model.CoinDetail
 import com.metehanbolat.domain.model.CoinDetailDto
 import com.metehanbolat.domain.model.CoinDto
-import com.metehanbolat.domain.model.Coin
-import com.metehanbolat.domain.model.CoinDetail
 
 fun CoinDetailDto.toCoinDetail(): CoinDetail {
     return CoinDetail(

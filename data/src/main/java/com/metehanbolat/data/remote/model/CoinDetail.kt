@@ -1,4 +1,4 @@
-package com.metehanbolat.domain.model
+package com.metehanbolat.data.remote.model
 
 import com.metehanbolat.domain.model.submodels.TeamMember
 

@@ -5,6 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.metehanbolat.data.remote.extensions.toCoinDetail
+import com.metehanbolat.data.remote.model.CoinDetail
 import com.metehanbolat.domain.common.Constants.PARAM_COIN_ID
 import com.metehanbolat.domain.common.Resource
 import com.metehanbolat.domain.use_case.get_coin.GetCoinUseCase
@@ -32,7 +34,7 @@ class CoinDetailViewModel @Inject constructor(
         getCoinUseCase(coinId).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _state.value = CoinDetailState(coin = result.data)
+                    _state.value = CoinDetailState(coin = result.data?.toCoinDetail())
                 }
                 is Resource.Error -> {
                     _state.value = CoinDetailState(error = result.message ?: "An unexpected error occurred!")
